@@ -38,6 +38,7 @@ $records = DataDecorator::processCollection($records);
 
 ## Supported Formats
 
+### Format 1
 This first format specifies how a model should be instantiated and initialized, and which method on its presenter
 should be called
 
@@ -48,6 +49,7 @@ format: ${Model(attribute to set on model)->presenterMethod(final_key_name)}
 example: ``${Profile(username)->presentLogoSrc(icon)}``
 ```
 
+### Format 2
 This second format facilitates getting the output by calling an arbitrary static method of a class. Question mark in the second format has a special meaning and binding will be done on it. Other parameters of a method can be specified if any.
 
 **final_key_name** which key to store the processed data in
