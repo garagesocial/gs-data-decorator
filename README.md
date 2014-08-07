@@ -25,7 +25,7 @@ foreach($records as &$record) {
 #### AFTER: DataDecorator Way
 With the DataRecorator way, you can specify within the select string how the data should be processed. The syntax follows conventions and should not be read as raw PHP code. The two formats are explained in the next section. 
 ```php
-$records = MyModel::select('id', 'name AS ${MyClass::myStaticMethod(?)->name}')->get()->toArray();
+$records = MyModel::select('id', 'name AS ${MyClass.myStaticMethod(?)}:name')->get()->toArray();
 $records = DataDecorator::processCollection($records);
 
 // output: ``{id: 1, name: 'one_modified'}, {id: 2, name: 'two_modified'}, {id: 3, name: 'three_modified'}, {id: four, name: 'four_modified'}``
@@ -42,6 +42,7 @@ $records = DataDecorator::processCollection($records);
 ```
 format: ${Model({attribute to set on model}).presenterMethod()}:outputKey
 example: ``${Profile({username: ?})->presentLogoSrc()}:icon``
+```
 
 ### Object method
 ```
