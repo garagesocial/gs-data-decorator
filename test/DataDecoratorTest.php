@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../src/DataDecorator.php';
 
-class DataPresenterTest extends PHPUnit_Framework_TestCase
+class DataDecoratorTest extends PHPUnit_Framework_TestCase
 {
     protected $useDatabase = false;
     protected $useLoggedInUser = false;
