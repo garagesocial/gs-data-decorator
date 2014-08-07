@@ -31,30 +31,32 @@ $records = DataDecorator::processCollection($records);
 // output: ``{id: 1, name: 'one_modified'}, {id: 2, name: 'two_modified'}, {id: 3, name: 'three_modified'}, {id: four, name: 'four_modified'}``
 ```
 - the decorator needs to be wrapped in ``${ }``
-- the ``?`` represents the value of name
-- the ending ``->name`` means to apply the resulting value back to the key ``name``, this could be changed to any other name
-- the results needs to be ran through ``DataDecorator::processCollection($records)``
+- the value of name will be bound ``?`` 
+- the ending ``:name`` means to apply the resulting value back to the key ``name``, this could be changed to any other name
+- the results needs to be run through ``DataDecorator::processCollection($records)``
 
 
 ## Supported Formats
 
-### Format 1
-This first format specifies how a model should be instantiated and initialized, and which method on its presenter
-should be called
-
-**final_key_name** which key to store the processed data in
-
+### Presenter
 ```
-format: ${Model(attribute to set on model)->presenterMethod(final_key_name)}
-example: ``${Profile(username)->presentLogoSrc(icon)}``
+format: ${Model({attribute to set on model}).presenterMethod()}:outputKey
+example: ``${Profile({username: ?})->presentLogoSrc()}:icon``
+
+### Object method
+```
+format: ${Class({attr: ?}).method()}:outputKey
+example: ``${Foo({name: ?}).bar()}:baz``
 ```
 
-### Format 2
-This second format facilitates getting the output by calling an arbitrary static method of a class. Question mark in the second format has a special meaning and binding will be done on it. Other parameters of a method can be specified if any.
-
-**final_key_name** which key to store the processed data in
-
+### Class method
 ```
-format: ${ClassName::staticMethod(?)->outputKey}
-example: ``${Avatar::getAvatarPath(profile_photo_small, ?)->final_key_name}``
+format: ${ClassName.staticMethod(?)}:outputKey
+example: ``${Avatar.getAvatarPath(profile_photo_small, ?)}:final_key_name``
+```         
+
+### Function call
+```
+format: ${myFunc(?)}:outputKey
+example: ``${strtoupper(?)}:final_key_name``
 ```         
