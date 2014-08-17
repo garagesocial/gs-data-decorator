@@ -1,6 +1,9 @@
 <?php
 
 /**
+ * DataDecorator
+ * https://github.com/garagesocial/gs-data-decorator
+ * 
  * This package can be used to do some post-process on a data set. It looks for templates and calls the specified method to get the output.
  * It is useful especially when data is retrieved from a database and then needs some post-processing.
  * The following formats are supported:
@@ -16,7 +19,6 @@
  *    1. ${VehicleMake({slug: ?}).presentLogoSrc()}:iconAutoMake
  *    2. ${\Gs\Libraries\Lib_storage.urlOrFallbackByKeyFixed(profile_photo_small, ?)}:thumbnail
  *
- * @package Gs\Libraries
  */
 class DataDecorator {
 
