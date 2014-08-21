@@ -81,7 +81,7 @@ class DataDecorator {
       $presenter = new $presenter($model);    // instantiate the presenter
       return [
         'key' => $matches['outkey'],
-        'value' => call_user_func([$presenter, $matches['method']])
+        'value' => call_user_func_array([$presenter, $matches['method']], $this->_bindParams($matches['params'], $value))
       ];  //call the presenter method
     }
   }
